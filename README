@@ -1,0 +1,4 @@
+npm i
+cd truffle
+truffle compile
+truffle migrate --network name
