@@ -30,19 +30,23 @@ contract paymentChannel {
     //TODO check uint(msg.value)
     }
     
-    //TODO CHANGE THIS FUNCTION LOGIC TO RECOVER VALUE FROM SIGNED MSG.
-    //sent as signedTransaction
-    function transferFunds(uint _shopId, uint _amount) public {
-        require(_amount <= customerFundsToShops[_shopId][msg.sender]);
-        customerFundsToShops[_shopId][msg.sender] -= _amount;
+    //(CHANGE THIS FUNCTION LOGIC TO RECOVER VALUE FROM SIGNED MSG)=> Mot Working
+    //TODO change to sendSignedTransaction logic
+    //onCalled, this function verifies the signature, then increments the 
+    //balance of shop. NOT TRANSFERS ETHER, just increments balance.
+    function transferFunds(uint _shopId, uint _amount, address _from) public {
+        require(_amount <= customerFundsToShops[_shopId][_from]);
+        customerFundsToShops[_shopId][_from] -= _amount;
         pendingBalanceShops[_shopId] += _amount;
     }
     
+    //@notice: This function transfers real Ether to shop's address
     function withdrawToShopAccount(uint _shopId) public shopOwner(_shopId) {
         uint amount = pendingBalanceShops[_shopId];
         pendingBalanceShops[_shopId] = 0;
         address payable to = shops[_shopId];
         to.transfer(amount);
     }
+
 }
 	
