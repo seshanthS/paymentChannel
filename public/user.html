@@ -2,10 +2,32 @@
 
 <head>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="js/scripts.js"></script>
+  <script src="js/ethereumjs-all-2018-1-17.min.js"></script>
+  <script src="js/jquery-3.3.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
+<h3>placeHolder for shopName</h3>
+<h4>placeHolder for shopAddress</h4>
+<label for="amountField">Amount</label>
+<input type="text" id="amountField" >
+<br><br>
+<input type ="button" value="sign" id="signBtn">
+<input type ="button" value="Add money" id="addMoneyBtn">
+<br><br>
+<div id = "signedTransactionLogger"></div>
 </body>
+<script>
+
+  $(document).ready(()=>{
+  	$("#signBtn").click(()=>{
+    signTransaction();
+});
+    initialise();
+   
+  });
+</script>
 
 </html>

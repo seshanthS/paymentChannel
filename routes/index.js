@@ -1,12 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var Web3 = require('web3');
+var path = require('path');
 var abi = require('./abi.js');
-var contractAddress = "";
+var contractAddress = "0x8ebE705A772fe970deC9163Fb779DF567E72cDFe";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+router.get('/asUser',(req,res,next)=>{
+  res.sendFile(path.join(__dirname,"../public","user.html"));
 });
 
 router.get('/withdraw', (req,res,next)=>{
